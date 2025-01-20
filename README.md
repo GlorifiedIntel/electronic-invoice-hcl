@@ -1,4 +1,4 @@
-Happiness Computers Invoice App
+## Happiness Computers Invoice App
 The Happiness Computers Invoice App is a powerful, user-friendly application designed to streamline the invoicing process for computer sales and services. This project aims to provide a seamless experience for generating, managing, and tracking invoices, ensuring efficient billing and customer satisfaction.
 
 Features
