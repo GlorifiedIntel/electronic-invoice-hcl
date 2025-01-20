@@ -1,5 +1,4 @@
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
 import { eq, and } from "drizzle-orm";
 import { auth } from '@clerk/nextjs/server';
 import { db } from '@/db';
@@ -47,7 +46,7 @@ export default async function InvoicePage({ params }: { params: { invoiceId: str
   // Company Info
   const companyInfo = {
     name: "Happiness Computers Limited",
-    address: "Suite 15 & 22, Zone 3 Shopping Complex, Wuse, Abuja",
+    address: "Suite 15 & 22, Zone 3 Shooping Complex, Wuse, Abuja",
     phoneNumber: "08036046736; 08032949083",
     email: "happinesscomputer2020@gmail.com",
     logoUrl: "/hclogo.png",  
@@ -59,8 +58,9 @@ export default async function InvoicePage({ params }: { params: { invoiceId: str
         <Container>
       <div className="flex flex-col items-center text-center mb-12">
         
-              <Image src={companyInfo.logoUrl} alt="Company Logo" className="h-12 mb-4" />
-               <h1 className="text-3xl font-bold mb-4">Happiness Computers Ltd.</h1>
+              {/* Company Info Display */}
+              <img src={companyInfo.logoUrl} alt="Company Logo" className="h-12 mb-4" />
+              <h1 className="text-3xl font-bold mb-4">Happiness Computers Ltd.</h1>
                 <ul className="space-y-0">
                 <li className="flex justify-center gap-4">
                   <strong className="font-medium text-sm">Address:</strong>

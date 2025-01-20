@@ -2,7 +2,7 @@
 
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
-import { auth } from '@clerk/nextjs/server';
+
 import { db } from '@/db';
 import { Invoices, Status } from '@/db/schema';
 import { eq, and } from "drizzle-orm";

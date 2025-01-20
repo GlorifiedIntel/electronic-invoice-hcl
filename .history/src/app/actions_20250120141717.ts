@@ -2,7 +2,7 @@
 
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
-import { auth } from '@clerk/nextjs/server';
+import { auth } from '@clerk/nextjs/server'
 import { db } from '@/db';
 import { Invoices, Status } from '@/db/schema';
 import { eq, and } from "drizzle-orm";
@@ -11,7 +11,7 @@ import { eq, and } from "drizzle-orm";
 export async function createAction(formData: FormData) {
   const { userId } = await auth()
   // Parse the amount, removing non-numeric characters if necessary
-  const amount = Math.floor(parseFloat(String(formData.get('amount'))) * 100);
+  const amount = parseFloat(String(formData.get('amount'))) * 100;
   const description = formData.get('description') as string;
   const billingName = formData.get('billingName') as string;
   const billingAddress = formData.get('billingAddress') as string;
