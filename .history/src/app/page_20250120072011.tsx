@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button"
-import Link from 'next/link'
 
 
 export default function Home() {
@@ -9,7 +8,6 @@ export default function Home() {
         <h1 className="text-3xl font-bold gap-6 digit">Electronic</h1>
         <h3 className="text-5xl font-bold">Sales Invoice</h3>
         <p className="mb-5 digit-2">App Version: 1.0</p>
-        <p>
         <Button className="hapi-button" asChild>
           <Link href="/dashboard">
             Sign In

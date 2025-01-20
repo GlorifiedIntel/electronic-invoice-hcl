@@ -101,12 +101,3 @@ body {
   font-weight: 400;
   font-style: normal;
 }
-
-.hapi-button {
-  width: 120px;
-  background-color: #60073a;
-}
-
-.hapi-button:hover {
-  background-color: #ff7e67;
-}

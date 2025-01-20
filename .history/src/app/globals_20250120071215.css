@@ -7,15 +7,32 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-@layer base {
-  * {
-    @apply border-border;
-    }
-  body {
-    @apply bg-background text-foreground;
-    background-color: #001d37;
-    color: whitesmoke;
-    }
+.head-title {
+  font-family: "Play", serif;
+  font-weight: 700;
+  font-style: normal;
+  display: inline;
+}
+
+.digit {
+  color: orange;
+  font-family: "Play", serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 35px;
+}
+
+.digit-2 {
+  color: rgb(241, 138, 65);
+  font-family: "Play", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.text-sm {
+  font-family: "Play", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 @layer base {
@@ -74,39 +91,13 @@ body {
     }
 }
 
-.head-title {
-  font-family: "Play", serif;
-  font-weight: 700;
-  font-style: normal;
-  display: inline;
-}
-
-.digit {
-  color: orange;
-  font-family: "Play", serif;
-  font-weight: 700;
-  font-style: normal;
-  font-size: 35px;
-}
-
-.digit-2 {
-  color: rgb(241, 138, 65);
-  font-family: "Play", serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.text-sm {
-  font-family: "Play", serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.hapi-button {
-  width: 120px;
-  background-color: #60073a;
-}
-
-.hapi-button:hover {
-  background-color: #ff7e67;
+@layer base {
+  * {
+    @apply border-border;
+    }
+  body {
+    @apply bg-background text-foreground;
+    background-color: #001d37;
+    color: whitesmoke;
+    }
 }
