@@ -56,22 +56,29 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-  
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #1d1e27;
     --foreground: #ededed;
-    
   }
 }
 
 body {
+  @apply bg-background text-foreground;
   background-color: #001d37;
   color: whitesmoke;
-  font-family: Arial, Helvetica, sans-serif;
 }
+
+@layer base {
+  :root {
+    
+  }
+}
+
+
+
 
 .head-title {
   font-family: "Play", serif;
