@@ -12,7 +12,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button";
 import { AVAILABLE_STATUSES } from '@/data/invoices';
 import { updateStatusAction } from '@/app/actions';
