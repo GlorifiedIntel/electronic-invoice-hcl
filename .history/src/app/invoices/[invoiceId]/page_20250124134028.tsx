@@ -147,7 +147,7 @@ export default async function InvoicePage({ params }: { params: { invoiceId: str
                     </DialogDescription>
                   </DialogHeader>
                     <DialogFooter>
-                    <form  action={deleteInvoiceAction}>
+                    <form className="flex justify-center" action={deleteInvoiceAction}>
                   <input type="hidden" name="id" value={invoiceId} />
                   <Button variant="destructive" className="flex items-center gap-2">
                     <Trash2 className="w-4 h-auto" />

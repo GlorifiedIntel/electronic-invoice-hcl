@@ -59,7 +59,7 @@ export default function NewInvoicePage() {
           
           <Form action={createAction} onSubmit={handleOnSubmit} className="grid gap-4 w-6/12">
             <div>
-              <Label htmlFor="billingName" className="block font-bold text-sm mb-2">
+              <Label htmlFor="billingName" className="block font-semibold text-sm mb-2">
                 Billing Name
               </Label>
               <Input id="billingName" name="billingName" type="text" placeholder="Enter Customer's name" required />

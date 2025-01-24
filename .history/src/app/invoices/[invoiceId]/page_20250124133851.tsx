@@ -146,7 +146,7 @@ export default async function InvoicePage({ params }: { params: { invoiceId: str
                         and remove the data from the database.
                     </DialogDescription>
                   </DialogHeader>
-                    <DialogFooter>
+                    <DialogFooter className="flex justify-center">
                     <form  action={deleteInvoiceAction}>
                   <input type="hidden" name="id" value={invoiceId} />
                   <Button variant="destructive" className="flex items-center gap-2">

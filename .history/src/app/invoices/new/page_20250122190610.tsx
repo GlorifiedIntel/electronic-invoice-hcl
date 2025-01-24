@@ -46,20 +46,16 @@ export default function NewInvoicePage() {
           <div className="flex justify-between">
             <h1 className="text-3xl font-bold text-left mb-6">Create Invoice</h1>
           </div>
-          
-          {/* Company Info Section */}
-              <div className="flex flex-col items-center justify-center text-center mb-12">
-                <Image src={companyInfo.logoUrl} alt={companyInfo.name}  width={90} height={52} className="mx-auto mb-2"/>
-                <h2 className="text-2xl font-semibold">{companyInfo.name}</h2>
-                <p>{companyInfo.address}</p>
-                <p>{companyInfo.phoneNumber}</p>
-                <p>{companyInfo.email}</p>
-              </div>
 
-          
+          {/* Company Info Section */}
+            <Image src={companyInfo.logoUrl} alt={companyInfo.name} width={90} height={52} className="mx-auto mb-2" />
+            <h2 className="text-2xl font-semibold">{companyInfo.name}</h2>
+            <p>{companyInfo.address}</p>
+            <p>{companyInfo.phoneNumber}</p>
+            <p>{companyInfo.email}</p>
           <Form action={createAction} onSubmit={handleOnSubmit} className="grid gap-4 w-6/12">
             <div>
-              <Label htmlFor="billingName" className="block font-bold text-sm mb-2">
+              <Label htmlFor="billingName" className="block font-semibold text-sm mb-2">
                 Billing Name
               </Label>
               <Input id="billingName" name="billingName" type="text" placeholder="Enter Customer's name" required />

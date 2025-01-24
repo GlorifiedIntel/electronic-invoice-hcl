@@ -18,7 +18,6 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -129,32 +128,25 @@ export default async function InvoicePage({ params }: { params: { invoiceId: str
                 </DropdownMenuTrigger>
                   <DropdownMenuContent>
                 <DropdownMenuItem>
-                <DialogTrigger asChild>
-                <button className="flex items-center gap-2">
+                  <form action={deleteInvoiceAction}>
+                  <input type="hidden" name="id" value={invoiceId} />
+                  <button className="flex items-center gap-2">
                     <Trash2 className="w-4 h-auto" />
                     Delete Invoice
                     </button>
-                </DialogTrigger>
+                 </form>
                  </DropdownMenuItem>
                  </DropdownMenuContent>
             </DropdownMenu>
-               <DialogContent>
-                  <DialogHeader className="gap-2">
-                    <DialogTitle className="text-gray-700 text-2xl">Delete Invoice?</DialogTitle>
+                
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Are you absolutely sure?</DialogTitle>
                     <DialogDescription>
-                        This action cannot be undone. This will permanently delete this Invoice
-                        and remove the data from the database.
+                        This action cannot be undone. This will permanently delete your account
+                        and remove your data from our servers.
                     </DialogDescription>
                   </DialogHeader>
-                    <DialogFooter>
-                    <form  action={deleteInvoiceAction}>
-                  <input type="hidden" name="id" value={invoiceId} />
-                  <Button variant="destructive" className="flex items-center gap-2">
-                    <Trash2 className="w-4 h-auto" />
-                    Delete Invoice
-                    </Button>
-                 </form>
-                 </DialogFooter>
                 </DialogContent>
               </Dialog>
            </div>

@@ -2,10 +2,10 @@
 
 import * as Clerk from '@clerk/elements/common'
 import * as SignUp from '@clerk/elements/sign-up'
+import Link from 'next/link'
 
 export default function SignUpPage() {
   return (
-    
     <div className="grid w-full flex-grow items-center bg-zinc-100 px-4 sm:justify-center">
       <SignUp.Root>
         <SignUp.Step
@@ -56,12 +56,12 @@ export default function SignUpPage() {
 
           <p className="text-center text-sm text-zinc-500">
             Already have an account?{' '}
-            <Clerk.Link
-              navigate="sign-in"
+            <Link
+              href={String(process.env.NEXT_PUBLIC_SIGN_IN_URL)}
               className="font-medium text-zinc-950 decoration-zinc-950/20 underline-offset-4 outline-none hover:text-zinc-700 hover:underline focus-visible:underline"
             >
               Sign in
-            </Clerk.Link>
+            </Link>
           </p>
         </SignUp.Step>
         <SignUp.Step
@@ -89,7 +89,7 @@ export default function SignUpPage() {
               <Clerk.Input
                 type="otp"
                 required
-                className="w-full rounded-md bg-white px-3.5 py-2 text-sm text-zinc-900 outline-none ring-1 ring-inset ring-zinc-300 hover:ring-zinc-400 focus:ring-[1.5px] focus:ring-zinc-950 data-[invalid]:ring-red-400"
+                className="w-full rounded-md bg-white px-3.5 py-2 text-sm outline-none ring-1 ring-inset ring-zinc-300 hover:ring-zinc-400 focus:ring-[1.5px] focus:ring-zinc-950 data-[invalid]:ring-red-400"
               />
               <Clerk.FieldError className="block text-sm text-red-400" />
             </Clerk.Field>
@@ -102,12 +102,12 @@ export default function SignUpPage() {
           </SignUp.Strategy>
           <p className="text-center text-sm text-zinc-500">
             Already have an account?{' '}
-            <Clerk.Link
-              navigate="sign-in"
+            <Link
+              href={String(process.env.NEXT_PUBLIC_SIGN_IN_URL)}
               className="font-medium text-zinc-950 decoration-zinc-950/20 underline-offset-4 outline-none hover:text-zinc-700 hover:underline focus-visible:underline"
             >
               Sign in
-            </Clerk.Link>
+            </Link>
           </p>
         </SignUp.Step>
         <SignUp.Step
@@ -134,7 +134,7 @@ export default function SignUpPage() {
             <Clerk.Input
               type="text"
               required
-              className="w-full rounded-md bg-white px-3.5 py-2 text-sm text-zinc-900 outline-none ring-1 ring-inset ring-zinc-300 hover:ring-zinc-400 focus:ring-[1.5px] focus:ring-zinc-950 data-[invalid]:ring-red-400"
+              className="w-full rounded-md bg-white px-3.5 py-2 text-sm outline-none ring-1 ring-inset ring-zinc-300 hover:ring-zinc-400 focus:ring-[1.5px] focus:ring-zinc-950 data-[invalid]:ring-red-400"
             />
             <Clerk.FieldError className="block text-sm text-red-400" />
           </Clerk.Field>
@@ -146,12 +146,12 @@ export default function SignUpPage() {
           </SignUp.Action>
           <p className="text-center text-sm text-zinc-500">
             Already have an account?{' '}
-            <Clerk.Link
-              navigate="sign-in"
+            <Link
+              href={String(process.env.NEXT_PUBLIC_SIGN_IN_URL)}
               className="font-medium text-zinc-950 decoration-zinc-950/20 underline-offset-4 outline-none hover:text-zinc-700 hover:underline focus-visible:underline"
             >
               Sign in
-            </Clerk.Link>
+            </Link>
           </p>
         </SignUp.Step>
       </SignUp.Root>

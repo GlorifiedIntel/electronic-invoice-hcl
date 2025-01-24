@@ -138,7 +138,7 @@ export default async function InvoicePage({ params }: { params: { invoiceId: str
                  </DropdownMenuItem>
                  </DropdownMenuContent>
             </DropdownMenu>
-               <DialogContent>
+               <DialogContent className="flex justify-center">
                   <DialogHeader className="gap-2">
                     <DialogTitle className="text-gray-700 text-2xl">Delete Invoice?</DialogTitle>
                     <DialogDescription>

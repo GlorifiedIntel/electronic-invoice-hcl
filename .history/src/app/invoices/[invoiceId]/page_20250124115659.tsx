@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { eq, and } from "drizzle-orm";
 import { auth } from '@clerk/nextjs/server';
-import { ChevronDown, Ellipsis, Trash2 } from 'lucide-react';
+import { ChevronDown, Ellipsis  } from 'lucide-react';
 import { db } from '@/db';
 import { Invoices } from '@/db/schema';
 import { Badge } from "@/components/ui/badge";
@@ -14,15 +14,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button";
 import { AVAILABLE_STATUSES } from '@/data/invoices';
 import { updateStatusAction, deleteInvoiceAction } from '@/app/actions';
@@ -98,7 +89,7 @@ export default async function InvoicePage({ params }: { params: { invoiceId: str
               result.status === 'uncollectible' && 'bg-red-600'
             )}>{result.status}</Badge>
           </h1>
-          <div className="flex gap-4">
+          <div>
           <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button className="flex items-center gap-2" variant="outline">
@@ -119,47 +110,26 @@ export default async function InvoicePage({ params }: { params: { invoiceId: str
              </DropdownMenuContent>
             </DropdownMenu>
 
-            <Dialog>
-              <DropdownMenu>
-                   <DropdownMenuTrigger asChild>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
                 <Button className="flex items-center gap-2" variant="outline">
                   <span className="sr-only">More Options</span>
                   <Ellipsis className="w-4 h-auto" />
                   </Button>
                 </DropdownMenuTrigger>
-                  <DropdownMenuContent>
+              <DropdownMenuContent>
                 <DropdownMenuItem>
-                <DialogTrigger asChild>
-                <button className="flex items-center gap-2">
-                    <Trash2 className="w-4 h-auto" />
-                    Delete Invoice
-                    </button>
-                </DialogTrigger>
+                  <form action={deleteInvoiceAction}>
+                  <input type="hidden" name="id" value={invoiceId} />
+                  <button>Delete Invoice</button>
+                 </form>
                  </DropdownMenuItem>
                  </DropdownMenuContent>
             </DropdownMenu>
-               <DialogContent>
-                  <DialogHeader className="gap-2">
-                    <DialogTitle className="text-gray-700 text-2xl">Delete Invoice?</DialogTitle>
-                    <DialogDescription>
-                        This action cannot be undone. This will permanently delete this Invoice
-                        and remove the data from the database.
-                    </DialogDescription>
-                  </DialogHeader>
-                    <DialogFooter>
-                    <form  action={deleteInvoiceAction}>
-                  <input type="hidden" name="id" value={invoiceId} />
-                  <Button variant="destructive" className="flex items-center gap-2">
-                    <Trash2 className="w-4 h-auto" />
-                    Delete Invoice
-                    </Button>
-                 </form>
-                 </DialogFooter>
-                </DialogContent>
-              </Dialog>
-           </div>
+            </div>
       </div>
- 
+
+      
 
         <p className="text-3xl mb-3">
           &#8358;{(result.amount / 100).toFixed(2)}

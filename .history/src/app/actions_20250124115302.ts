@@ -83,6 +83,6 @@ export async function deleteInvoiceAction(formData: FormData) {
       )
     )
 
-  redirect('/dashboard');
+  revalidatePath('/invoices/${id}', 'page')
 }
 

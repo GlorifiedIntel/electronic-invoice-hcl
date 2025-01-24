@@ -138,21 +138,18 @@ export default async function InvoicePage({ params }: { params: { invoiceId: str
                  </DropdownMenuItem>
                  </DropdownMenuContent>
             </DropdownMenu>
-               <DialogContent>
-                  <DialogHeader className="gap-2">
-                    <DialogTitle className="text-gray-700 text-2xl">Delete Invoice?</DialogTitle>
+               <DialogContent className="bg-white">
+                  <DialogHeader>
+                    <DialogTitle>Are you absolutely sure?</DialogTitle>
                     <DialogDescription>
                         This action cannot be undone. This will permanently delete this Invoice
                         and remove the data from the database.
                     </DialogDescription>
                   </DialogHeader>
                     <DialogFooter>
-                    <form  action={deleteInvoiceAction}>
+                    <form action={deleteInvoiceAction}>
                   <input type="hidden" name="id" value={invoiceId} />
-                  <Button variant="destructive" className="flex items-center gap-2">
-                    <Trash2 className="w-4 h-auto" />
-                    Delete Invoice
-                    </Button>
+                  
                  </form>
                  </DialogFooter>
                 </DialogContent>
