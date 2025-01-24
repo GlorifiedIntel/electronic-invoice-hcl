@@ -1,8 +1,8 @@
 import { CirclePlus } from 'lucide-react';
 import { auth } from '@clerk/nextjs/server';
-import { eq, and, isNull } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
 import { db } from '@/db';
-import { Customers, Invoices  } from '@/db/schema';
+import { Invoices, Customers } from '@/db/schema';
 
 import {
     Table,
@@ -29,25 +29,25 @@ export default async function DashboardPage() {
     return;
   }
 
-  const orgId = null; 
-  let results: { invoices: { userId: string; id: number; createTs: Date; amount: number; description: string; organizationId: string | null; customerId: number; status: string; }; customers: { userId: string; id: number; billingName: string; billingAddress: string; billingEmail: string; phoneNumber: string; }; }[] = [];
+  let  results;
   
   if (orgId) {
     results = await db.select()
   .from(Invoices)
   .innerJoin(Customers, eq(Invoices.customerId, Customers.id))
-  .where(eq(Invoices.organizationId, orgId))
+  .where(eq(Invoices.userId, userId))
   } else {
     results = await db.select()
   .from(Invoices)
   .innerJoin(Customers, eq(Invoices.customerId, Customers.id))
-  .where(and(
-    eq(Invoices.userId, userId),
-    isNull(Invoices.organizationId)
-  ));
+  .where(eq(Invoices.userId, userId))
   }
+  
+  
+  ;
 
-console.log('results', results)
+
+  console.log('results', results)
  return (
       <main className="h-full dashboardContainer">
       <Container>
@@ -80,7 +80,6 @@ console.log('results', results)
     </TableRow>
   </TableHeader>
   <TableBody>
-    
   {results.map(result => {
     return (
       <TableRow key={result.invoices.id}>
@@ -146,4 +145,3 @@ console.log('results', results)
 
 );
 }
-

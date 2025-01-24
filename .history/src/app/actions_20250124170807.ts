@@ -31,7 +31,7 @@ export async function createAction(formData: FormData) {
       billingEmail,
       phoneNumber,
       description,
-      organizationId: orgId || null
+      organizationId: orgId,
     })
     .returning({
       id: Customers.id, 
@@ -44,7 +44,7 @@ export async function createAction(formData: FormData) {
       description,
       customerId: customer.id,
       status,
-      organizationId: orgId || null
+      organizationId: orgId,
     })
     .returning({
       id: Invoices.id, 

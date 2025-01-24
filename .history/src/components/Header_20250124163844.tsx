@@ -21,9 +21,7 @@ const Header = () => {
             </Link>
             <div className='flex items-center gap-4 mt-4 text-orange-400'>
                   <SignedIn>
-                  <OrganizationSwitcher
-                  afterCreateOrganizationUrl="/dashboard"
-                  />
+                  <OrganizationSwitcher hidePersonal />
                 </SignedIn>
               </div>
             </div>   

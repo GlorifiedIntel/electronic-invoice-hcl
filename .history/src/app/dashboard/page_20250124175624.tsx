@@ -2,7 +2,7 @@ import { CirclePlus } from 'lucide-react';
 import { auth } from '@clerk/nextjs/server';
 import { eq, and, isNull } from 'drizzle-orm';
 import { db } from '@/db';
-import { Customers, Invoices  } from '@/db/schema';
+import { Invoices, Customers } from '@/db/schema';
 
 import {
     Table,
@@ -30,7 +30,7 @@ export default async function DashboardPage() {
   }
 
   const orgId = null; 
-  let results: { invoices: { userId: string; id: number; createTs: Date; amount: number; description: string; organizationId: string | null; customerId: number; status: string; }; customers: { userId: string; id: number; billingName: string; billingAddress: string; billingEmail: string; phoneNumber: string; }; }[] = [];
+  let results;
   
   if (orgId) {
     results = await db.select()
@@ -41,11 +41,11 @@ export default async function DashboardPage() {
     results = await db.select()
   .from(Invoices)
   .innerJoin(Customers, eq(Invoices.customerId, Customers.id))
-  .where(and(
+  .where
+  and(
     eq(Invoices.userId, userId),
     isNull(Invoices.organizationId)
-  ));
-  }
+  )};
 
 console.log('results', results)
  return (
@@ -80,7 +80,6 @@ console.log('results', results)
     </TableRow>
   </TableHeader>
   <TableBody>
-    
   {results.map(result => {
     return (
       <TableRow key={result.invoices.id}>

@@ -24,5 +24,5 @@ export const Customers = pgTable('customers', {
   phoneNumber: varchar('phoneNumber', { length: 11 }).notNull(), 
   description: text('description').notNull(),
   userId: text('userId').notNull(),
-  organizationId: text('organizationId'),  
+  organizationId: text('organizationId')  
   });

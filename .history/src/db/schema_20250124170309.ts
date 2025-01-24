@@ -23,6 +23,5 @@ export const Customers = pgTable('customers', {
   billingEmail: varchar('billingEmail', { length: 255 }).notNull(), 
   phoneNumber: varchar('phoneNumber', { length: 11 }).notNull(), 
   description: text('description').notNull(),
-  userId: text('userId').notNull(),
-  organizationId: text('organizationId'),  
+  userId: text('userId').notNull(),  
   });
