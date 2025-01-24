@@ -34,6 +34,7 @@ export default async function InvoicePage({ params }: { params: { invoiceId: str
     return;
   }
 
+  // Directly use `params.invoiceId`
   const invoiceId = parseInt(params.invoiceId, 10);
 
   if (isNaN(invoiceId)) {
@@ -93,12 +94,12 @@ export default async function InvoicePage({ params }: { params: { invoiceId: str
               Invoice: {invoiceId}
               <Badge className={cn(
                 "rounded-full capitalize",
-                result.invoices.status === 'open' && 'bg-blue-500',
-                result.invoices.status === 'paid' && 'bg-green-600',
-                result.invoices.status === 'void' && 'bg-zinc-700',
-                result.invoices.status === 'uncollectible' && 'bg-red-600'
+                result.status === 'open' && 'bg-blue-500',
+                result.status === 'paid' && 'bg-green-600',
+                result.status === 'void' && 'bg-zinc-700',
+                result.status === 'uncollectible' && 'bg-red-600'
               )}>
-                {result.invoices.status}
+                {result.status}
               </Badge>
             </h1>
 
@@ -124,48 +125,35 @@ export default async function InvoicePage({ params }: { params: { invoiceId: str
               </DropdownMenu>
 
               <Dialog>
-              <DropdownMenu>
-                   <DropdownMenuTrigger asChild>
-                <Button className="flex items-center gap-2" variant="outline">
-                  <span className="sr-only">More Options</span>
-                  <Ellipsis className="w-4 h-auto" />
-                  </Button>
-                </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                <DropdownMenuItem>
                 <DialogTrigger asChild>
-                <button className="flex items-center gap-2">
-                    <Trash2 className="w-4 h-auto" />
-                    Delete Invoice
-                    </button>
+                  <Button className="flex items-center gap-2" variant="outline">
+                    <Ellipsis className="w-4 h-auto" />
+                  </Button>
                 </DialogTrigger>
-                 </DropdownMenuItem>
-                 </DropdownMenuContent>
-            </DropdownMenu>
-               <DialogContent>
+                <DialogContent>
                   <DialogHeader className="gap-2">
                     <DialogTitle className="text-gray-700 text-2xl">Delete Invoice?</DialogTitle>
                     <DialogDescription>
-                        This action cannot be undone. This will permanently delete this Invoice
-                        and remove the data from the database.
+                      This action cannot be undone. This will permanently delete this Invoice
+                      and remove the data from the database.
                     </DialogDescription>
                   </DialogHeader>
-                    <DialogFooter>
-                    <form  action={deleteInvoiceAction}>
-                  <input type="hidden" name="id" value={invoiceId} />
-                  <Button variant="destructive" className="flex items-center gap-2">
-                    <Trash2 className="w-4 h-auto" />
-                    Delete Invoice
-                    </Button>
-                 </form>
-                 </DialogFooter>
+                  <DialogFooter>
+                    <form action={deleteInvoiceAction}>
+                      <input type="hidden" name="id" value={invoiceId} />
+                      <Button variant="destructive" className="flex items-center gap-2">
+                        <Trash2 className="w-4 h-auto" />
+                        Delete Invoice
+                      </Button>
+                    </form>
+                  </DialogFooter>
                 </DialogContent>
               </Dialog>
-           </div>
-      </div>
+            </div>
+          </div>
 
-          <p className="text-3xl mb-3">&#8358;{(result.invoices.amount / 100).toFixed(2)}</p>
-          <p className="text-lg mb-8">{result.invoices.description}</p>
+          <p className="text-3xl mb-3">&#8358;{(result.amount / 100).toFixed(2)}</p>
+          <p className="text-lg mb-8">{result.description}</p>
 
           <h2 className="font-bold text-lg mb-4">Billing Details</h2>
           <ul className="grid gap-2">
@@ -175,23 +163,23 @@ export default async function InvoicePage({ params }: { params: { invoiceId: str
             </li>
             <li className="flex gap-4">
               <strong className="block w-28 flex-shrink-0 font-medium text-sm">Invoice Date:</strong>
-              <span>{new Date(result.invoices.createTs).toLocaleDateString()}</span>
+              <span>{new Date(result.createTs).toLocaleDateString()}</span>
             </li>
             <li className="flex gap-4">
               <strong className="block w-28 flex-shrink-0 font-medium text-sm">Billing Name:</strong>
-              <span>{result.customers.billingName}</span>
+              <span>{result.billingName}</span>
             </li>
             <li className="flex gap-4">
               <strong className="block w-28 flex-shrink-0 font-medium text-sm">Phone Number:</strong>
-              <span>{result.customers.phoneNumber}</span>
+              <span>{result.phoneNumber}</span>
             </li>
             <li className="flex gap-4">
               <strong className="block w-28 flex-shrink-0 font-medium text-sm">Billing Email:</strong>
-              <span>{result.customers.billingEmail}</span>
+              <span>{result.billingEmail}</span>
             </li>
             <li className="flex gap-4">
               <strong className="block w-28 flex-shrink-0 font-medium text-sm">Billing Address:</strong>
-              <span>{result.customers.billingAddress}</span>
+              <span>{result.billingAddress}</span>
             </li>
           </ul>
         </Container>

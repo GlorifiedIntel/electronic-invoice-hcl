@@ -10,6 +10,8 @@ import { eq, and } from "drizzle-orm";
 
 export async function createAction(formData: FormData) {
   const { userId } = await auth()
+  
+  
   const status = formData.get("status") as "open" | "paid" | "void" | "uncollectible";
 
   if (!userId) {
@@ -23,14 +25,13 @@ export async function createAction(formData: FormData) {
   const billingEmail = formData.get('billingEmail') as string;
   const phoneNumber = formData.get('phoneNumber') as string;
  
-  const [customer] = await db.insert(Customers)
+  const results = await db.insert(Customers)
     .values({
       userId,
       billingName,
       billingAddress,
       billingEmail,
-      phoneNumber,
-      description
+      phoneNumber
     })
     .returning({
       id: Customers.id, 
@@ -39,9 +40,12 @@ export async function createAction(formData: FormData) {
     const results = await db.insert(Invoices)
     .values({
       userId,
+      billingName,
+      billingAddress,
+      billingEmail,
+      phoneNumber,
       amount,
       description,
-      customerId: customer.id,
       status,
     })
     .returning({

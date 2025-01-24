@@ -4,12 +4,17 @@ import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
 import { auth } from '@clerk/nextjs/server';
 import { db } from '@/db';
-import { Invoices, Status, Customers } from '@/db/schema';
+import { Invoices, Status } from '@/db/schema';
 import { eq, and } from "drizzle-orm";
 
 
 export async function createAction(formData: FormData) {
   const { userId } = await auth()
+  
+  const billingName = formData.get('billingName') as string;
+  const billingAddress = formData.get('billingAddress') as string;
+  const billingEmail = formData.get('billingEmail') as string;
+  const phoneNumber = formData.get('phoneNumber') as string;
   const status = formData.get("status") as "open" | "paid" | "void" | "uncollectible";
 
   if (!userId) {
@@ -18,35 +23,23 @@ export async function createAction(formData: FormData) {
 
   const amount = Math.floor(parseFloat(String(formData.get('amount'))) * 100);
   const description = formData.get('description') as string;
-  const billingName = formData.get('billingName') as string;
-  const billingAddress = formData.get('billingAddress') as string;
-  const billingEmail = formData.get('billingEmail') as string;
-  const phoneNumber = formData.get('phoneNumber') as string;
- 
-  const [customer] = await db.insert(Customers)
+ const results = await db.insert(Invoices)
     .values({
       userId,
       billingName,
       billingAddress,
       billingEmail,
       phoneNumber,
-      description
-    })
-    .returning({
-      id: Customers.id, 
-    });
-
-    const results = await db.insert(Invoices)
-    .values({
-      userId,
       amount,
       description,
-      customerId: customer.id,
       status,
+      
+      
     })
     .returning({
       id: Invoices.id, 
     });
+
   
   redirect(`/invoices/${results[0].id}`);
 }

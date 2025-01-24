@@ -7,20 +7,13 @@ export const statusEnum = pgEnum('status', statuses as [Status, ...Array<Status>
 export const Invoices = pgTable('invoices', {
   id: serial('id').primaryKey(), 
   createTs: timestamp('createTs').defaultNow().notNull(), 
-  amount: integer('amount').notNull(), 
-  description: text('description').notNull(),
-  userId: text('userId').notNull(),
-  customerId: integer('customerId').notNull().references(() =>Customers.id), 
-  status: statusEnum('status').notNull(),
-});
-
-export const Customers = pgTable('customers', {
-  id: serial('id').primaryKey(), 
-  createTs: timestamp('createTs').defaultNow().notNull(), 
   billingName: varchar('billingName', { length: 255 }).notNull(), 
   billingAddress: text('billingAddress').notNull(), 
   billingEmail: varchar('billingEmail', { length: 255 }).notNull(), 
   phoneNumber: varchar('phoneNumber', { length: 11 }).notNull(), 
+  amount: integer('amount').notNull(), 
   description: text('description').notNull(),
   userId: text('userId').notNull(),  
-  });
+  status: statusEnum('status').notNull(),
+});
+

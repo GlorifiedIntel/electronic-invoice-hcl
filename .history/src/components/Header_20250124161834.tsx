@@ -21,7 +21,7 @@ const Header = () => {
             </Link>
             <div className='flex items-center gap-4 mt-4 text-orange-400'>
                   <SignedIn>
-                  <OrganizationSwitcher />
+                    <OrganizationSwitcher />
                 </SignedIn>
               </div>
             </div>   
@@ -36,6 +36,8 @@ const Header = () => {
     </div>
     </Container>
   </header>
+
+
     );
   };
   

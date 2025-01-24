@@ -19,9 +19,9 @@ const Header = () => {
           <Link href="/dashboard">
             <Image src="/hclogo.png" alt="Happiness Computer Logo" width={90} height={52} className="h-6 w-11" /><h1 className="text-3xl font-bold head-title">Happiness Computers</h1>
             </Link>
-            <div className='flex items-center gap-4 mt-4 text-orange-400'>
+            <div className='flex items-center gap-4 mt-4 text-gray-400'>
                   <SignedIn>
-                  <OrganizationSwitcher />
+                <OrganizationSwitcher />
                 </SignedIn>
               </div>
             </div>   
@@ -36,6 +36,8 @@ const Header = () => {
     </div>
     </Container>
   </header>
+
+
     );
   };
   

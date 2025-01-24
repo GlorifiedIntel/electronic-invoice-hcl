@@ -72,57 +72,57 @@ export default async function DashboardPage() {
   <TableBody>
   {results.map(result => {
     return (
-      <TableRow key={result.invoices.id}>
+      <TableRow key={result.id}>
       <TableCell className="font-medium text-left p-0">
-        <Link href={`/invoices/${result.invoices.id}`} className="font-semibold block p-4">
-          {new Date(result.invoices.createTs).toLocaleDateString()}
+        <Link href={`/invoices/${result.id}`} className="font-semibold block p-4">
+          {new Date(result.createTs).toLocaleDateString()}
         </Link>
       </TableCell>
       
       <TableCell className="text-left p-0">
-        <Link href={`/invoices/${result.customers.id}`} className="font-semibold block p-4" >
-          {result.customers.billingName}
+        <Link href={`/invoices/${result.id}`} className="font-semibold block p-4" >
+          {result.billingName}
         </Link>
       </TableCell>
       
       <TableCell className="text-left p-0">
-        <Link href={`/invoices/${result.customers.id}`} className="font-semibold block p-4">
-          {result.customers.billingAddress}
-        </Link>
-      </TableCell>
-
-      
-      <TableCell className="text-left p-0">
-        <Link href={`/invoices/${result.customers.id}`} className="block p-4">
-          {result.customers.billingEmail}
+        <Link href={`/invoices/${result.id}`} className="font-semibold block p-4">
+          {result.billingAddress}
         </Link>
       </TableCell>
 
       
       <TableCell className="text-left p-0">
-        <Link href={`/invoices/${result.customers.id}`} className="font-semibold block p-4">
-          {result.customers.phoneNumber}
+        <Link href={`/invoices/${result.id}`} className="block p-4">
+          {result.billingEmail}
+        </Link>
+      </TableCell>
+
+      
+      <TableCell className="text-left p-0">
+        <Link href={`/invoices/${result.id}`} className="font-semibold block p-4">
+          {result.phoneNumber}
         </Link>
       </TableCell>
 
       
       <TableCell className="text-center p-0">
-        <Link href={`/invoices/${result.invoices.id}`} className="block p-4">
+        <Link href={`/invoices/${result.id}`} className="block p-4">
           <Badge className={cn(
                   "rounded-full capitalize",
-                  result.invoices.status === 'open' && 'bg-blue-500',
-                  result.invoices.status === 'paid' && 'bg-green-600',
-                  result.invoices.status === 'void' && 'bg-zinc-700',
-                  result.invoices.status === 'uncollectible' && 'bg-red-600'
-                  )}>{result.invoices.status}
+                  result.status === 'open' && 'bg-blue-500',
+                  result.status === 'paid' && 'bg-green-600',
+                  result.status === 'void' && 'bg-zinc-700',
+                  result.status === 'uncollectible' && 'bg-red-600'
+                  )}>{result.status}
                 </Badge>
         </Link>
       </TableCell>
 
      
       <TableCell className="text-right p-0">
-        <Link href={`/invoices/${result.invoices.id}`} className="font-semibold block p-4">
-          &#8358;{(result.invoices.amount / 100).toFixed(2)}
+        <Link href={`/invoices/${result.id}`} className="font-semibold block p-4">
+          &#8358;{(result.amount / 100).toFixed(2)}
         </Link>
       </TableCell>
     </TableRow>
